@@ -10,7 +10,6 @@ import {
   Store,
   TrendingUp,
   FileText,
-  MessageSquare,
   Database,
   Plus,
   HelpCircle,
@@ -20,6 +19,8 @@ import {
   Send,
   Sparkles,
   ChevronDown,
+  Boxes,
+  Banknote,
 } from "lucide-react"
 import {
   Dialog,
@@ -34,16 +35,21 @@ import {
 import CenterShops from "@/components/workkar/CenterShops"
 import CenterAnalytics from "@/components/workkar/CenterAnalytics"
 import CenterReports from "@/components/workkar/CenterReports"
-import CenterMessages from "@/components/workkar/CenterMessages"
 import CenterDataImport from "@/components/workkar/CenterDataImport"
 import CenterTasksDetail from "@/components/workkar/CenterTasksDetail"
 import CenterStaffDetail from "@/components/workkar/CenterStaffDetail"
 import CenterActivityDetail from "@/components/workkar/CenterActivityDetail"
 import CenterAIResult, { AIKind } from "@/components/workkar/CenterAIResult"
+import CenterInventory from "@/components/workkar/CenterInventory"
+import CenterAISuggestions from "@/components/workkar/CenterAISuggestions"
+import CenterFinancials from "@/components/workkar/CenterFinancials"
+
+// Inventory dataset
+import { inventoryData, type InventoryItem } from "@/components/workkar/inventoryData"
 
 const CARD = "backdrop-blur-xl bg-black/50 border border-white/10 rounded-3xl"
 
-// ---- Types & seed
+/* -------------------- Types -------------------- */
 export type Staff = {
   id: string
   phoneNumber: string
@@ -55,7 +61,6 @@ export type Staff = {
   tasksCompleted: number
   salary: number
   day: any[]
-  // Optional display name support if your JSON has it
   name?: string
 }
 
@@ -85,6 +90,7 @@ export type Activity = {
   type: "success" | "info" | "default"
 }
 
+/* -------------------- Seeds -------------------- */
 const seedShop: Shop = {
   id: "shop-001",
   shopName: "Work-kar Demo - Koramangala",
@@ -116,27 +122,31 @@ const seedActivities: Activity[] = [
   { id: "a4", title: "Task assigned", time: "5 hours ago", type: "default" },
 ]
 
+/* -------------------- Page -------------------- */
 type CenterKey =
   | "shops"
   | "analytics"
   | "reports"
-  | "messages"
+  | "inventory"
+  | "financials"
   | "data"
-  | "tasks"      // tasks-only detail
-  | "staff"      // staff-only detail
-  | "activity"   // activity detail
-  | "ai"         // AI result in center
+  | "tasks"
+  | "staff"
+  | "activity"
+  | "ai"
+  | "ai_suggestions"
 
 export default function DashboardPage() {
   // Global state
   const [shop, setShop] = useState<Shop>(seedShop)
   const [dailyTasks, setDailyTasks] = useState<DayTask[]>(seedTasks)
   const [activityFeed] = useState<Activity[]>(seedActivities)
+  const [inventory, setInventory] = useState<InventoryItem[]>(inventoryData)
 
   const [center, setCenter] = useState<CenterKey>("shops")
   const [prevCenter, setPrevCenter] = useState<CenterKey>("shops")
 
-  // Add Staff dialog state
+  // Add Staff dialog
   const [addOpen, setAddOpen] = useState(false)
   const [newStaff, setNewStaff] = useState<Partial<Staff>>({
     role: "Cashier",
@@ -148,7 +158,6 @@ export default function DashboardPage() {
     skillset: [],
   })
 
-  // === Handlers (memoized) ===
   const handleAddStaff = useCallback((e?: FormEvent) => {
     e?.preventDefault()
     if (!newStaff.role || !newStaff.phoneNumber) return
@@ -174,6 +183,13 @@ export default function DashboardPage() {
     setDailyTasks((prev) => [...prev, task])
   }, [])
 
+  // Apply schedule from AI (replace existing dailyTasks)
+  const applyScheduleFromAI = useCallback((tasks: DayTask[]) => {
+    setDailyTasks(tasks)
+    setCenter("tasks") // navigate to detailed tasks view to review the applied schedule
+  }, [])
+
+  // Center navigation
   const goCenter = useCallback((k: CenterKey) => startTransition(() => setCenter(k)), [])
   const goShops = useCallback(() => goCenter("shops"), [goCenter])
   const goTasks = useCallback(() => goCenter("tasks"), [goCenter])
@@ -181,19 +197,22 @@ export default function DashboardPage() {
   const goActivity = useCallback(() => goCenter("activity"), [goCenter])
   const goAnalytics = useCallback(() => goCenter("analytics"), [goCenter])
   const goReports = useCallback(() => goCenter("reports"), [goCenter])
-  const goMessages = useCallback(() => goCenter("messages"), [goCenter])
+  const goInventory = useCallback(() => goCenter("inventory"), [goCenter])
+  const goFinancials = useCallback(() => goCenter("financials"), [goCenter])
   const goData = useCallback(() => goCenter("data"), [goCenter])
+  const goAISuggestions = useCallback(() => goCenter("ai_suggestions"), [goCenter])
 
-  // Menu (memoized)
+  // Sidebar menu
   const menu = useMemo(() => ([
     { key: "shops" as const, icon: Store, label: "Shops", onClick: goShops },
     { key: "analytics" as const, icon: TrendingUp, label: "Analytics", onClick: goAnalytics },
     { key: "reports" as const, icon: FileText, label: "Reports", onClick: goReports },
-    { key: "messages" as const, icon: MessageSquare, label: "Messages", onClick: goMessages },
+    { key: "inventory" as const, icon: Boxes, label: "Inventory", onClick: goInventory },
+    { key: "financials" as const, icon: Banknote, label: "Financials", onClick: goFinancials },
     { key: "data" as const, icon: Database, label: "Data Import", onClick: goData },
-  ]), [goShops, goAnalytics, goReports, goMessages, goData])
+  ]), [goShops, goAnalytics, goReports, goInventory, goFinancials, goData])
 
-  // ===== AI dock state & helpers =====
+  /* -------------------- AI dock + caching -------------------- */
   type AIState = {
     raw: string
     data: any
@@ -203,28 +222,23 @@ export default function DashboardPage() {
   } | null
 
   const [aiState, setAiState] = useState<AIState>(null)
+  const [lastAiState, setLastAiState] = useState<AIState>(null)
 
-  // guess kind from prompt
   const guessKindFromPrompt = (p: string): AIKind | "auto" => {
     const s = p.toLowerCase()
-    if (s.includes("optimal employee") || s.includes("optimal employees")) return "optimal_staff"
-    if (s.includes("create a schedule")) return "schedule"
+    if (s.includes("optimal employee")) return "optimal_staff"
+    if (s.includes("create a schedule") || s.includes("generate a fresh task schedule")) return "schedule"
     if (s.includes("summary")) return "summary"
     return "auto"
   }
-
-  // try to infer kind from data shape
   const inferKindFromData = (data: any): AIKind => {
     if (Array.isArray(data)) {
-      // Schedule format: [{ task: Task[], staff: "<id>" }, ...]
       if (data.length && typeof data[0] === "object" && ("task" in data[0] || "tasks" in data[0]) && ("staff" in data[0] || "staffId" in data[0])) {
         return "schedule"
       }
-      // Staff[] (optimal employees)
-      if (data.length && typeof data[0] === "object" && ("role" in data[0]) && ("status" in data[0]) && ("phoneNumber" in data[0])) {
+      if (data.length && typeof data[0] === "object" && ("role" in data[0]) && ("status" in data[0])) {
         return "optimal_staff"
       }
-      // Summary often returns Task[] or array with "summary"
       if (data.length && (("summary" in data[0]) || ("status" in data[0] && ("task" in data[0] || "title" in data[0])))) {
         return "summary"
       }
@@ -233,14 +247,11 @@ export default function DashboardPage() {
     }
     return "summary"
   }
-
   const extractJson = (text: string) => {
-    // Strip ```json ... ``` or ``` ... ```
     const codeBlock = text.match(/```(?:json)?\s*([\s\S]*?)```/i)
     return codeBlock ? codeBlock[1].trim() : text.trim()
   }
 
-  // Ask AI & show center result
   const [prompt, setPrompt] = useState("")
   const [isThinking, setIsThinking] = useState(false)
 
@@ -269,11 +280,15 @@ export default function DashboardPage() {
       const guessed = guessKindFromPrompt(q)
       const kind: AIKind = parsed && guessed === "auto" ? inferKindFromData(parsed) : (guessed === "auto" ? "summary" : guessed)
 
-      setAiState({ raw: text, data: parsed, kind, prompt: q, ...(parseError ? { parseError } : {}) })
+      const result: AIState = { raw: text, data: parsed, kind, prompt: q, ...(parseError ? { parseError } : {}) }
+      setAiState(result)
+      setLastAiState(result) // cache last result
       setPrevCenter((c) => (c === "ai" ? "shops" : c))
       setCenter("ai")
     } catch (err) {
-      setAiState({ raw: "Request failed", data: null, kind: "summary", prompt: q, parseError: (err as any)?.message ?? "unknown error" })
+      const result: AIState = { raw: "Request failed", data: null, kind: "summary", prompt: q, parseError: (err as any)?.message ?? "unknown error" }
+      setAiState(result)
+      setLastAiState(result)
       setPrevCenter((c) => (c === "ai" ? "shops" : c))
       setCenter("ai")
     } finally {
@@ -282,26 +297,44 @@ export default function DashboardPage() {
     }
   }, [prompt])
 
-  const collapseAI = useCallback(() => {
-    // Hide AI result and restore previous center pane
-    setCenter(prevCenter)
-  }, [prevCenter])
+  const collapseAI = useCallback(() => setCenter(prevCenter), [prevCenter])
+  const showLastAI = useCallback(() => {
+    if (!lastAiState) return
+    setAiState(lastAiState)
+    setPrevCenter((c) => (c === "ai" ? "shops" : c))
+    setCenter("ai")
+  }, [lastAiState])
 
+  /* -------------------- AI Suggestions (inventory lows) -------------------- */
+  const suggestionsAll = useMemo(() => {
+    return inventory
+      .map((it) => ({
+        ...it,
+        shortageRatio: it.reorderLevel === 0 ? 1 : it.stock / it.reorderLevel,
+        critical: it.stock <= it.reorderLevel,
+      }))
+      .filter((x) => x.critical)
+      .sort((a, b) => a.shortageRatio - b.shortageRatio)
+  }, [inventory])
+
+  const currentSuggestion = suggestionsAll[0]
+
+  /* -------------------- Render -------------------- */
   return (
     <div className="h-screen relative overflow-hidden">
       {/* Main grid */}
-      <div className="relative z-10 p-5 grid grid-cols-12 gap-5 h-screen pb-20">
+      <div className="relative z-10 p-4 grid grid-cols-12 gap-4 h-screen pb-20">
         {/* LEFT SIDEBAR */}
-        <Card className={`col-span-2 ${CARD} p-5 h-fit flex flex-col`}>
-          <div className="space-y-5">
+        <Card className={`col-span-2 ${CARD} p-4 h-fit flex flex-col`}>
+          <div className="space-y-4">
             <div className="text-center">
-              <h1 className="text-2xl font-bold text-white">Work-kar</h1>
-              <p className="text-white/60 text-sm">Staff Management</p>
+              <h1 className="text-xl font-bold text-white">Work-kar</h1>
+              <p className="text-white/60 text-xs">Staff Management</p>
             </div>
 
             <div>
-              <h4 className="text-white/80 text-xs font-semibold uppercase tracking-wider mb-2.5">Workspace</h4>
-              <nav className="space-y-2">
+              <h4 className="text-white/80 text-[11px] font-semibold uppercase tracking-wider mb-2">Workspace</h4>
+              <nav className="space-y-1.5">
                 {menu.map((item) => {
                   const Icon = item.icon
                   const isActive = center === item.key
@@ -310,7 +343,7 @@ export default function DashboardPage() {
                       key={item.key}
                       variant="ghost"
                       onClick={() => setCenter(item.key)}
-                      className={`w-full justify-start text-sm text-white/80 hover:bg-white/10 hover:text-white transition-all h-10 ${
+                      className={`w-full justify-start text-[13px] text-white/80 hover:bg-white/10 hover:text-white transition-all h-9 ${
                         isActive ? "bg-white/10 text-white border border-white/20" : ""
                       }`}
                     >
@@ -323,9 +356,9 @@ export default function DashboardPage() {
             </div>
 
             {/* Premium (only here) */}
-            <Card className="bg-black/60 border border-white/20 rounded-2xl p-4">
+            <Card className="bg-black/60 border border-white/20 rounded-2xl p-3.5">
               <div className="flex items-center gap-3">
-                <div className="w-9 h-9 rounded-xl bg-white/10 grid place-items-center border border-white/10">
+                <div className="w-8 h-8 rounded-xl bg-white/10 grid place-items-center border border-white/10">
                   <Crown className="h-4 w-4 text-white" />
                 </div>
                 <div className="flex-1">
@@ -333,25 +366,25 @@ export default function DashboardPage() {
                   <p className="text-[11px] text-white/70">Unlock advanced features</p>
                 </div>
               </div>
-              <Button className="mt-3 w-full bg-white/10 hover:bg-white/20 border border-white/20 text-white h-9 text-sm">
+              <Button className="mt-3 w-full bg-white/10 hover:bg-white/20 border border-white/20 text-white h-8 text-sm">
                 Upgrade Now <ChevronRight className="ml-2 h-4 w-4" />
               </Button>
             </Card>
           </div>
 
-          <div className="flex-shrink-0 space-y-2.5 pt-4 border-t border-white/10 mt-4">
-            <Button variant="ghost" className="w-full justify-start text-sm text-white/80 hover:bg-white/10 hover:text-white transition-all h-10">
+          <div className="flex-shrink-0 space-y-2 pt-3 border-t border-white/10 mt-3">
+            <Button variant="ghost" className="w-full justify-start text-sm text-white/80 hover:bg-white/10 hover:text-white transition-all h-8">
               <HelpCircle className="mr-3 h-4 w-4" />
               Contact Support
             </Button>
-            <Button variant="ghost" className="w-full justify-start text-sm text-white/80 hover:bg-white/10 hover:text-white transition-all h-10">
+            <Button variant="ghost" className="w-full justify-start text-sm text-white/80 hover:bg-white/10 hover:text-white transition-all h-8">
               <LogOut className="mr-3 h-4 w-4" />
               Logout
             </Button>
           </div>
         </Card>
 
-        {/* CENTER — keep panes mounted & swap with `hidden` */}
+        {/* CENTER panes */}
         <div className="col-span-8 space-y-0">
           <div hidden={center !== "shops"} aria-hidden={center !== "shops"}>
             <CenterShops
@@ -373,8 +406,12 @@ export default function DashboardPage() {
             <CenterReports cardClass={CARD} shop={shop} />
           </div>
 
-          <div hidden={center !== "messages"} aria-hidden={center !== "messages"}>
-            <CenterMessages cardClass={CARD} shop={shop} />
+          <div hidden={center !== "inventory"} aria-hidden={center !== "inventory"}>
+            <CenterInventory cardClass={CARD} items={inventory} />
+          </div>
+
+          <div hidden={center !== "financials"} aria-hidden={center !== "financials"}>
+            <CenterFinancials cardClass={CARD} shop={shop} items={inventory} />
           </div>
 
           <div hidden={center !== "data"} aria-hidden={center !== "data"}>
@@ -400,16 +437,21 @@ export default function DashboardPage() {
               shop={shop}
               onBack={goShops}
               onCollapse={collapseAI}
+              onAcceptSchedule={applyScheduleFromAI}
             />
+          </div>
+
+          <div hidden={center !== "ai_suggestions"} aria-hidden={center !== "ai_suggestions"}>
+            <CenterAISuggestions cardClass={CARD} suggestions={suggestionsAll} onBack={goShops} />
           </div>
         </div>
 
         {/* RIGHT SIDEBAR */}
-        <Card className={`col-span-2 ${CARD} p-5 h-fit`}>
+        <Card className={`col-span-2 ${CARD} p-4 h-fit`}>
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <p className="text-white/70 text-sm">Quick Actions</p>
-              <Button onClick={() => setAddOpen(true)} className="h-9 bg-white/10 hover:bg-white/20 border border-white/20 text-white">
+              <Button onClick={() => setAddOpen(true)} className="h-8 bg-white/10 hover:bg-white/20 border border-white/20 text-white">
                 <Plus className="h-4 w-4 mr-1.5" />
                 Add Staff
               </Button>
@@ -417,13 +459,13 @@ export default function DashboardPage() {
 
             {/* Recent Activity (Top 3) */}
             <div>
-              <div className="flex items-center justify-between mb-3">
-                <h3 className="text-lg font-semibold text-white">Recent Activity</h3>
+              <div className="flex items-center justify-between mb-2.5">
+                <h3 className="text-xl font-semibold text-white">Recent Activity</h3>
                 <Button size="sm" variant="ghost" className="h-8 text-white/80 hover:bg-white/10" onClick={goActivity}>
                   View more
                 </Button>
               </div>
-              <div className="space-y-3">
+              <div className="space-y-2.5">
                 {activityFeed.slice(0, 3).map((activity) => (
                   <div key={activity.id} className="flex items-center space-x-3 p-3 bg-black/40 rounded-xl border border-white/10">
                     <div
@@ -440,31 +482,36 @@ export default function DashboardPage() {
               </div>
             </div>
 
-            {/* Top Performers */}
+            {/* AI Suggestions — single most critical + View more */}
             <div>
-              <h3 className="text-lg font-semibold text-white mb-3">Top Performers</h3>
-              <div className="space-y-3">
-                {shop.staffs
-                  .slice()
-                  .sort((a, b) => b.tasksCompleted - a.tasksCompleted)
-                  .slice(0, 3)
-                  .map((staff, i) => (
-                    <div key={staff.id} className="flex items-center justify-between p-3 bg-black/40 rounded-xl border border-white/10">
-                      <div className="flex items-center space-x-3">
-                        <Avatar className="h-8 w-8">
-                          <AvatarFallback className="bg-white/10 text-white text-xs">
-                            {staff.role.split(" ").map((w) => w[0]).join("").toUpperCase()}
-                          </AvatarFallback>
-                        </Avatar>
-                        <div>
-                          <p className="text-sm font-medium text-white">{staff.role}</p>
-                          <p className="text-[11px] text-white/60">{staff.tasksCompleted} tasks</p>
-                        </div>
-                      </div>
-                      <Badge className="bg-white/10 text-white border-white/20">#{i + 1}</Badge>
-                    </div>
-                  ))}
+              <div className="flex items-center justify-between mb-2.5">
+                <h3 className="text-xl font-semibold text-white">AI Suggestions</h3>
+                <Button size="sm" variant="ghost" className="h-8 text-white/80 hover:bg-white/10" onClick={goAISuggestions}>
+                  View more
+                </Button>
               </div>
+
+              {!currentSuggestion ? (
+                <p className="text-white/70 text-sm">No restock suggestions right now.</p>
+              ) : (
+                <div className="p-3.5 bg-black/40 rounded-xl border border-white/10">
+                  <div className="flex items-center justify-between">
+                    <p className="text-base text-white truncate" title={currentSuggestion.name}>{currentSuggestion.name}</p>
+                    <Badge className="bg-white/10 text-white border-white/20">SKU {currentSuggestion.sku}</Badge>
+                  </div>
+                  <p className="text-xs text-white/60 mt-0.5">
+                    Stock {currentSuggestion.stock}/{currentSuggestion.reorderLevel} • Supplier: {currentSuggestion.supplier}
+                  </p>
+                  <div className="mt-2 w-full bg-white/10 rounded-full h-1.5">
+                    <div
+                      className="h-1.5 rounded-full bg-gradient-to-r from-red-400 to-yellow-400"
+                      style={{
+                        width: `${Math.min(100, Math.max(5, (currentSuggestion.stock / Math.max(1, currentSuggestion.reorderLevel)) * 100))}%`,
+                      }}
+                    />
+                  </div>
+                </div>
+              )}
             </div>
           </div>
         </Card>
@@ -487,7 +534,7 @@ export default function DashboardPage() {
                 <select
                   value={newStaff.role}
                   onChange={(e) => setNewStaff((s) => ({ ...s, role: e.target.value }))}
-                  className="mt-1 h-10 w-full rounded-md bg-black/40 border border-white/20 text-white px-3"
+                  className="mt-1 h-9 w-full rounded-md bg-black/40 border border-white/20 text-white px-3"
                 >
                   {["Cashier", "Supervisor", "Stock Associate", "Security", "Sales Associate"].map((r) => (
                     <option key={r} value={r}>{r}</option>
@@ -500,7 +547,7 @@ export default function DashboardPage() {
                   value={newStaff.phoneNumber || ""}
                   onChange={(e) => setNewStaff((s) => ({ ...s, phoneNumber: e.target.value }))}
                   placeholder="+91 ..."
-                  className="mt-1 bg-black/40 border-white/20 text-white placeholder:text-white/40"
+                  className="mt-1 bg-black/40 border-white/20 text-white placeholder:text-white/40 h-9"
                 />
               </div>
             </div>
@@ -511,7 +558,7 @@ export default function DashboardPage() {
                 <select
                   value={newStaff.status}
                   onChange={(e) => setNewStaff((s) => ({ ...s, status: e.target.value as Staff["status"] }))}
-                  className="mt-1 h-10 w-full rounded-md bg-black/40 border border-white/20 text-white px-3"
+                  className="mt-1 h-9 w-full rounded-md bg-black/40 border border-white/20 text-white px-3"
                 >
                   {["active", "inactive", "on_leave"].map((s) => (
                     <option key={s} value={s}>{s.replace("_", " ")}</option>
@@ -524,7 +571,7 @@ export default function DashboardPage() {
                   value={newStaff.startTime || ""}
                   onChange={(e) => setNewStaff((s) => ({ ...s, startTime: e.target.value }))}
                   placeholder="09:00"
-                  className="mt-1 bg-black/40 border-white/20 text-white placeholder:text-white/40"
+                  className="mt-1 bg-black/40 border-white/20 text-white placeholder:text-white/40 h-9"
                 />
               </div>
               <div>
@@ -533,7 +580,7 @@ export default function DashboardPage() {
                   value={newStaff.endTime || ""}
                   onChange={(e) => setNewStaff((s) => ({ ...s, endTime: e.target.value }))}
                   placeholder="17:00"
-                  className="mt-1 bg-black/40 border-white/20 text-white placeholder:text-white/40"
+                  className="mt-1 bg-black/40 border-white/20 text-white placeholder:text-white/40 h-9"
                 />
               </div>
             </div>
@@ -545,7 +592,7 @@ export default function DashboardPage() {
                   type="number"
                   value={Number(newStaff.salary || 0)}
                   onChange={(e) => setNewStaff((s) => ({ ...s, salary: Number(e.target.value) }))}
-                  className="mt-1 bg-black/40 border-white/20 text-white placeholder:text-white/40"
+                  className="mt-1 bg-black/40 border-white/20 text-white placeholder:text-white/40 h-9"
                 />
               </div>
               <div>
@@ -556,7 +603,7 @@ export default function DashboardPage() {
                     setNewStaff((s) => ({ ...s, skillset: e.target.value.split(",").map((x) => x.trim()).filter(Boolean) }))
                   }
                   placeholder="POS, Inventory"
-                  className="mt-1 bg-black/40 border-white/20 text-white placeholder:text-white/40"
+                  className="mt-1 bg-black/40 border-white/20 text-white placeholder:text-white/40 h-9"
                 />
               </div>
             </div>
@@ -573,9 +620,20 @@ export default function DashboardPage() {
         </DialogContent>
       </Dialog>
 
-      {/* AI Prompt Dock */}
+      {/* AI Prompt Dock + Last result pill */}
       <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-20 w-[min(calc(100vw-2rem),44rem)]">
-        <div className="backdrop-blur-xl bg-black/60 border border-white/10 rounded-2xl p-2.5">
+        {lastAiState && center !== "ai" && (
+          <div className="mb-2 flex justify-center">
+            <button
+              onClick={showLastAI}
+              className="px-3 py-1 rounded-full text-xs text-white bg-white/10 border border-white/15 hover:bg-white/20 transition"
+            >
+              Show last result
+            </button>
+          </div>
+        )}
+
+        <div className="backdrop-blur-xl bg-black/60 border border-white/10 rounded-2xl p-2">
           <form onSubmit={askAI} className="flex items-center gap-2">
             <div className="inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-[11px] text-white/70">
               <Sparkles className="h-3.5 w-3.5" />
@@ -585,25 +643,23 @@ export default function DashboardPage() {
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
               placeholder='Ask: "Give todays summary", "Optimal employee for inventory", "Create a schedule"...'
-              className="flex-1 h-9 bg-black/40 border border-white/15 text-white placeholder:text-white/40"
+              className="flex-1 h-8 bg-black/40 border border-white/15 text-white placeholder:text-white/40"
             />
             <Button
               type="submit"
               disabled={isThinking || !prompt.trim()}
-              className="h-9 bg-white/10 hover:bg-white/20 border border-white/20 text-white disabled:opacity-60"
+              className="h-8 bg-white/10 hover:bg-white/20 border border-white/20 text-white disabled:opacity-60"
             >
               <Send className="h-4 w-4 mr-1.5" />
               {isThinking ? "Asking..." : "Ask"}
             </Button>
 
             {center === "ai" && (
-              <Button type="button" onClick={collapseAI} title="Hide result" className="h-9 bg-white/5 hover:bg-white/15 text-white border border-white/10">
+              <Button type="button" onClick={collapseAI} title="Hide result" className="h-8 bg-white/5 hover:bg-white/15 text-white border border-white/10">
                 <ChevronDown className="h-4 w-4" />
               </Button>
             )}
           </form>
-
-          {/* We still show raw response area only when *not* in AI center (to keep things tidy). */}
         </div>
       </div>
     </div>

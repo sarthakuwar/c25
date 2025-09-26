@@ -2,7 +2,7 @@
 
 import { Card } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { TrendingUp, Users, DollarSign, Clock } from "lucide-react"
+import { TrendingUp, Users, IndianRupee, Clock } from "lucide-react"
 
 type Props = {
   cardClass: string
@@ -24,7 +24,7 @@ export default function CenterAnalytics({ cardClass, shop }: Props) {
         {[
           { title: "Utilization", value: "78%", icon: Clock },
           { title: "Avg Tasks/Staff", value: "25", icon: Users },
-          { title: "Payroll / Rev", value: "32%", icon: DollarSign },
+          { title: "Payroll / Rev", value: "32%", icon: IndianRupee },
         ].map((s, i) => (
           <Card key={i} className={`${cardClass} p-5`}>
             <div className="flex items-center justify-between">

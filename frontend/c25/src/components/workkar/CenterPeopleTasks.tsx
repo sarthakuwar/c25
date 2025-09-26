@@ -272,7 +272,7 @@ export default function DashboardPage() {
           {active === "messages" && <CenterMessages cardClass={CARD} shop={shop} />}
           {active === "data" && <CenterDataImport cardClass={CARD} shop={shop} />}
           {active === "tasks" && (
-            <CenterTasksDetail cardClass={CARD} shop={shop} dailyTasks={dailyTasks} />
+            <CenterTasksDetail cardClass={CARD} shop={shop} dailyTasks={dailyTasks}  />
           )}
           {active === "staff" && (
             <CenterStaffDetail cardClass={CARD} shop={shop} staffs={shop.staffs} />

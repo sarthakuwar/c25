@@ -120,3 +120,31 @@
     @apply bg-background text-foreground;
   }
 }
+
+.aurora-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background:
+    radial-gradient(60rem 60rem at 80% -10%, rgba(249,115,22,0.28), transparent 60%),
+    radial-gradient(70rem 70rem at 10% -10%, rgba(34,211,238,0.28), transparent 60%),
+    radial-gradient(80rem 80rem at 50% 120%, rgba(244,63,94,0.22), transparent 60%),
+    linear-gradient(180deg, rgba(2,6,23,0.95) 0%, rgba(2,6,23,0.85) 40%, rgba(2,6,23,0.95) 100%);
+  filter: blur(60px) saturate(1.1);
+  transform: translateZ(0);
+}
+
+@media (min-width: 640px) {
+  .aurora-bg { filter: blur(80px) saturate(1.1); }
+}
+
+@media (prefers-color-scheme: dark) {
+  .aurora-bg {
+    background:
+      radial-gradient(60rem 60rem at 80% -10%, rgba(249,115,22,0.22), transparent 60%),
+      radial-gradient(70rem 70rem at 10% -10%, rgba(59,130,246,0.22), transparent 60%),
+      radial-gradient(80rem 80rem at 50% 120%, rgba(244,63,94,0.18), transparent 60%),
+      linear-gradient(180deg, rgba(2,6,23,0.97) 0%, rgba(2,6,23,0.88) 40%, rgba(2,6,23,0.97) 100%);
+  }
+}

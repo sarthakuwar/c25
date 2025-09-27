@@ -10,7 +10,8 @@ import {
   Store,
   TrendingUp,
   FileText,
-  Database,
+  Boxes,
+  Banknote,
   Plus,
   HelpCircle,
   LogOut,
@@ -19,8 +20,6 @@ import {
   Send,
   Sparkles,
   ChevronDown,
-  Boxes,
-  Banknote,
 } from "lucide-react"
 import {
   Dialog,
@@ -31,8 +30,8 @@ import {
   DialogFooter,
 } from "@/components/ui/dialog"
 
-// 👇 Import translated pages (adjust paths if needed)
-import DashboardPageHindi from "./dash-hin"
+// 👇 Adjust these paths to your file locations
+import DashboardPageEnglish from "./dash-eng"
 import DashboardPageMarathi from "./dash-mar"
 
 // Center panes
@@ -94,6 +93,21 @@ export type Activity = {
   type: "success" | "info" | "default"
 }
 
+/* -------------------- UI Label Maps (Hindi) -------------------- */
+const ROLE_OPTIONS = [
+  { value: "Cashier", label: "कैशियर" },
+  { value: "Supervisor", label: "पर्यवेक्षक" },
+  { value: "Stock Associate", label: "स्टॉक एसोसिएट" },
+  { value: "Security", label: "सुरक्षा" },
+  { value: "Sales Associate", label: "सेल्स एसोसिएट" },
+] as const
+
+const STATUS_OPTIONS = [
+  { value: "active", label: "सक्रिय" },
+  { value: "inactive", label: "निष्क्रिय" },
+  { value: "on_leave", label: "अवकाश पर" },
+] as const
+
 /* -------------------- Seeds -------------------- */
 const seedShop: Shop = {
   id: "shop-001",
@@ -101,29 +115,30 @@ const seedShop: Shop = {
   startTime: "09:00",
   endTime: "21:00",
   staffs: [
-    { id: "shop-001-staff-001", phoneNumber: "+91 74985 23422", role: "Cashier", status: "active", startTime: "09:00", endTime: "17:00", skillset: ["Merchandising", "Baking", "Inventory"], tasksCompleted: 27, salary: 32000, day: [], name: "Cashier" },
-    { id: "shop-001-staff-002", phoneNumber: "+91 97101 202163", role: "Supervisor", status: "inactive", startTime: "12:00", endTime: "20:00", skillset: ["Inventory", "Electronics", "POS", "Merchandising"], tasksCompleted: 25, salary: 22000, day: [], name: "Supervisor" },
-    { id: "shop-001-staff-003", phoneNumber: "+91 99137 708064", role: "Stock Associate", status: "on_leave", startTime: "13:00", endTime: "22:00", skillset: ["Merchandising", "Inventory", "Cooking"], tasksCompleted: 23, salary: 27500, day: [], name: "Stock Associate" },
-    { id: "shop-001-staff-004", phoneNumber: "+91 96878 815887", role: "Security", status: "on_leave", startTime: "09:00", endTime: "18:00", skillset: ["Customer Service", "Inventory", "Returns Handling"], tasksCompleted: 28, salary: 34000, day: [], name: "Security" },
-    { id: "shop-001-staff-005", phoneNumber: "+91 93659 215268", role: "Sales Associate", status: "on_leave", startTime: "08:00", endTime: "17:00", skillset: ["POS", "Inventory", "Returns Handling", "Electronics"], tasksCompleted: 22, salary: 22000, day: [], name: "Sales Associate" },
+    { id: "shop-001-staff-001", phoneNumber: "+91 74985 23422", role: "Cashier", status: "active", startTime: "09:00", endTime: "17:00", skillset: ["Merchandising", "Baking", "Inventory"], tasksCompleted: 27, salary: 32000, day: [], name: "कैशियर" },
+    { id: "shop-001-staff-002", phoneNumber: "+91 97101 202163", role: "Supervisor", status: "inactive", startTime: "12:00", endTime: "20:00", skillset: ["Inventory", "Electronics", "POS", "Merchandising"], tasksCompleted: 25, salary: 22000, day: [], name: "पर्यवेक्षक" },
+    { id: "shop-001-staff-003", phoneNumber: "+91 99137 708064", role: "Stock Associate", status: "on_leave", startTime: "13:00", endTime: "22:00", skillset: ["Merchandising", "Inventory", "Cooking"], tasksCompleted: 23, salary: 27500, day: [], name: "स्टॉक एसोसिएट" },
+    { id: "shop-001-staff-004", phoneNumber: "+91 96878 815887", role: "Security", status: "on_leave", startTime: "09:00", endTime: "18:00", skillset: ["Customer Service", "Inventory", "Returns Handling"], tasksCompleted: 28, salary: 34000, day: [], name: "सुरक्षा" },
+    { id: "shop-001-staff-005", phoneNumber: "+91 93659 215268", role: "Sales Associate", status: "on_leave", startTime: "08:00", endTime: "17:00", skillset: ["POS", "Inventory", "Returns Handling", "Electronics"], tasksCompleted: 22, salary: 22000, day: [], name: "सेल्स एसोसिएट" },
   ],
 }
 
+// Note: assignee values kept in English to preserve any role matching logic elsewhere.
 const seedTasks: DayTask[] = [
-  { id: "t1", title: "Open store & safety check", start: "08:45", end: "09:15", assignee: "Supervisor", priority: "High" },
-  { id: "t2", title: "POS setup & cash float", start: "08:50", end: "09:10", assignee: "Cashier", priority: "Medium" },
-  { id: "t3", title: "Shelf refill — bakery", start: "09:30", end: "10:30", assignee: "Stock Associate", priority: "Medium" },
-  { id: "t4", title: "Inventory cycle count", start: "11:00", end: "12:00", assignee: "Supervisor", priority: "High" },
-  { id: "t6", title: "Receive shipment", start: "15:00", end: "16:30", assignee: "Stock Associate", priority: "High" },
-  { id: "t7", title: "Evening rush staffing", start: "18:00", end: "20:00", assignee: "All", priority: "High" },
-  { id: "t8", title: "Closing checklist", start: "20:30", end: "21:00", assignee: "Security", priority: "Medium" },
+  { id: "t1", title: "दुकान खोलें और सुरक्षा जाँच", start: "08:45", end: "09:15", assignee: "Supervisor", priority: "High" },
+  { id: "t2", title: "POS सेटअप और कैश फ्लोट", start: "08:50", end: "09:10", assignee: "Cashier", priority: "Medium" },
+  { id: "t3", title: "शेल्फ रीफिल — बेकरी", start: "09:30", end: "10:30", assignee: "Stock Associate", priority: "Medium" },
+  { id: "t4", title: "इन्वेंट्री साइकिल काउंट", start: "11:00", end: "12:00", assignee: "Supervisor", priority: "High" },
+  { id: "t6", title: "शिपमेंट प्राप्त करें", start: "15:00", end: "16:30", assignee: "Stock Associate", priority: "High" },
+  { id: "t7", title: "शाम की भीड़ प्रबंधन", start: "18:00", end: "20:00", assignee: "All", priority: "High" },
+  { id: "t8", title: "क्लोजिंग चेकलिस्ट", start: "20:30", end: "21:00", assignee: "Security", priority: "Medium" },
 ]
 
 const seedActivities: Activity[] = [
-  { id: "a1", title: "Shift schedule updated", time: "2 min ago", type: "success" },
-  { id: "a2", title: "New staff added", time: "1 hour ago", type: "success" },
-  { id: "a3", title: "Payroll processed", time: "3 hours ago", type: "info" },
-  { id: "a4", title: "Task assigned", time: "5 hours ago", type: "default" },
+  { id: "a1", title: "शिफ्ट शेड्यूल अपडेट हुआ", time: "2 मिनट पहले", type: "success" },
+  { id: "a2", title: "नया कर्मचारी जोड़ा गया", time: "1 घंटा पहले", type: "success" },
+  { id: "a3", title: "पेरोल प्रोसेस हुआ", time: "3 घंटे पहले", type: "info" },
+  { id: "a4", title: "कार्य असाइन किया गया", time: "5 घंटे पहले", type: "default" },
 ]
 
 /* -------------------- Page -------------------- */
@@ -140,11 +155,11 @@ type CenterKey =
   | "ai"
   | "ai_suggestions"
 
-export default function DashboardPageEnglish() {
-  // 🔤 Language selector state (keep hooks at the top; do NOT early return yet)
-  const [lang, setLang] = useState<"en" | "hi" | "mr">("en")
+export default function DashboardPageHindi() {
+  // 🔤 Language selector (keep hooks at the top; do NOT early return yet)
+  const [lang, setLang] = useState<"en" | "hi" | "mr">("hi")
 
-  // Global state (English page)
+  // Global state
   const [shop, setShop] = useState<Shop>(seedShop)
   const [dailyTasks, setDailyTasks] = useState<DayTask[]>(seedTasks)
   const [activityFeed] = useState<Activity[]>(seedActivities)
@@ -179,7 +194,8 @@ export default function DashboardPageEnglish() {
       skillset: (newStaff.skillset as string[]) || [],
       tasksCompleted: 0,
       day: [],
-      name: newStaff.role,
+      // display name in Hindi
+      name: ROLE_OPTIONS.find(r => r.value === newStaff.role)?.label || newStaff.role,
     }
     setShop((prev) => ({ ...prev, staffs: [...prev.staffs, staff] }))
     setAddOpen(false)
@@ -193,7 +209,7 @@ export default function DashboardPageEnglish() {
   // Apply schedule from AI (replace existing dailyTasks)
   const applyScheduleFromAI = useCallback((tasks: DayTask[]) => {
     setDailyTasks(tasks)
-    setCenter("tasks")
+    setCenter("tasks") // navigate to detailed tasks view to review the applied schedule
   }, [])
 
   // Center navigation
@@ -209,13 +225,13 @@ export default function DashboardPageEnglish() {
   const goData = useCallback(() => goCenter("data"), [goCenter])
   const goAISuggestions = useCallback(() => goCenter("ai_suggestions"), [goCenter])
 
-  // Sidebar menu
+  // Sidebar menu (Hindi labels)
   const menu = useMemo(() => ([
-    { key: "shops" as const, icon: Store, label: "Shops", onClick: goShops },
-    { key: "analytics" as const, icon: TrendingUp, label: "Analytics", onClick: goAnalytics },
-    { key: "reports" as const, icon: FileText, label: "Reports", onClick: goReports },
-    { key: "inventory" as const, icon: Boxes, label: "Inventory", onClick: goInventory },
-    { key: "financials" as const, icon: Banknote, label: "Financials", onClick: goFinancials },
+    { key: "shops" as const, icon: Store, label: "दुकानें", onClick: goShops },
+    { key: "analytics" as const, icon: TrendingUp, label: "एनालिटिक्स", onClick: goAnalytics },
+    { key: "reports" as const, icon: FileText, label: "रिपोर्ट्स", onClick: goReports },
+    { key: "inventory" as const, icon: Boxes, label: "इन्वेंट्री", onClick: goInventory },
+    { key: "financials" as const, icon: Banknote, label: "वित्त", onClick: goFinancials },
   ]), [goShops, goAnalytics, goReports, goInventory, goFinancials, goData])
 
   /* -------------------- AI dock + caching -------------------- */
@@ -232,9 +248,15 @@ export default function DashboardPageEnglish() {
 
   const guessKindFromPrompt = (p: string): AIKind | "auto" => {
     const s = p.toLowerCase()
+    // English cues
     if (s.includes("optimal employee")) return "optimal_staff"
     if (s.includes("create a schedule") || s.includes("generate a fresh task schedule")) return "schedule"
     if (s.includes("summary")) return "summary"
+    // Hindi cues
+    const hs = p
+    if (hs.includes("उपयुक्त") && hs.includes("कर्मचारी")) return "optimal_staff"
+    if (hs.includes("शेड्यूल") && (hs.includes("बन") || hs.includes("तैयार") || hs.includes("निर्माण"))) return "schedule"
+    if (hs.includes("सारांश")) return "summary"
     return "auto"
   }
   const inferKindFromData = (data: any): AIKind => {
@@ -280,7 +302,7 @@ export default function DashboardPageEnglish() {
         const cleaned = extractJson(text)
         parsed = JSON.parse(cleaned)
       } catch (err: any) {
-        parseError = `Could not parse JSON: ${err?.message ?? "unknown error"}`
+        parseError = `JSON पार्स नहीं हो सका: ${err?.message ?? "अज्ञात त्रुटि"}`
       }
 
       const guessed = guessKindFromPrompt(q)
@@ -288,11 +310,11 @@ export default function DashboardPageEnglish() {
 
       const result: AIState = { raw: text, data: parsed, kind, prompt: q, ...(parseError ? { parseError } : {}) }
       setAiState(result)
-      setLastAiState(result)
+      setLastAiState(result) // cache last result
       setPrevCenter((c) => (c === "ai" ? "shops" : c))
       setCenter("ai")
     } catch (err) {
-      const result: AIState = { raw: "Request failed", data: null, kind: "summary", prompt: q, parseError: (err as any)?.message ?? "unknown error" }
+      const result: AIState = { raw: "अनुरोध विफल", data: null, kind: "summary", prompt: q, parseError: (err as any)?.message ?? "अज्ञात त्रुटि" }
       setAiState(result)
       setLastAiState(result)
       setPrevCenter((c) => (c === "ai" ? "shops" : c))
@@ -326,14 +348,14 @@ export default function DashboardPageEnglish() {
   const currentSuggestion = suggestionsAll[0]
 
   /* -------------------- Language handoff (AFTER all hooks have run) -------------------- */
-  if (lang === "hi") {
-    return <DashboardPageHindi />
+  if (lang === "en") {
+    return <DashboardPageEnglish />
   }
   if (lang === "mr") {
     return <DashboardPageMarathi />
   }
 
-  /* -------------------- Render (English) -------------------- */
+  /* -------------------- Render (Hindi) -------------------- */
   return (
     <div className="h-screen relative overflow-hidden">
       {/* Main grid */}
@@ -343,13 +365,13 @@ export default function DashboardPageEnglish() {
           <div className="space-y-4">
             <div className="text-center">
               <h1 className="text-xl font-bold text-white">Work-kar</h1>
-              <p className="text-white/60 text-xs">Staff Management</p>
+              <p className="text-white/60 text-xs">स्टाफ प्रबंधन</p>
             </div>
 
             {/* Language selector (navbar/left sidebar) */}
             <div className="mt-1">
               <label className="text-white/80 text-[11px] font-semibold uppercase tracking-wider mb-2 block">
-                Language
+                भाषा
               </label>
               <select
                 value={lang}
@@ -363,7 +385,7 @@ export default function DashboardPageEnglish() {
             </div>
 
             <div>
-              <h4 className="text-white/80 text-[11px] font-semibold uppercase tracking-wider mb-2">Workspace</h4>
+              <h4 className="text-white/80 text-[11px] font-semibold uppercase tracking-wider mb-2">वर्कस्पेस</h4>
               <nav className="space-y-1.5">
                 {menu.map((item) => {
                   const Icon = item.icon
@@ -392,12 +414,12 @@ export default function DashboardPageEnglish() {
                   <Crown className="h-4 w-4 text-white" />
                 </div>
                 <div className="flex-1">
-                  <h4 className="text-white font-semibold text-sm">Go Premium</h4>
-                  <p className="text-[11px] text-white/70">Unlock advanced features</p>
+                  <h4 className="text-white font-semibold text-sm">प्रीमियम लें</h4>
+                  <p className="text-[11px] text-white/70">उन्नत फीचर अनलॉक करें</p>
                 </div>
               </div>
               <Button className="mt-3 w-full bg-white/10 hover:bg-white/20 border border-white/20 text-white h-8 text-sm">
-                Upgrade Now <ChevronRight className="ml-2 h-4 w-4" />
+                अभी अपग्रेड करें <ChevronRight className="ml-2 h-4 w-4" />
               </Button>
             </Card>
           </div>
@@ -405,11 +427,11 @@ export default function DashboardPageEnglish() {
           <div className="flex-shrink-0 space-y-2 pt-3 border-t border-white/10 mt-3">
             <Button variant="ghost" className="w-full justify-start text-sm text-white/80 hover:bg-white/10 hover:text-white transition-all h-8">
               <HelpCircle className="mr-3 h-4 w-4" />
-              Contact Support
+              सपोर्ट से संपर्क करें
             </Button>
             <Button variant="ghost" className="w-full justify-start text-sm text-white/80 hover:bg-white/10 hover:text-white transition-all h-8">
               <LogOut className="mr-3 h-4 w-4" />
-              Logout
+              लॉग आउट
             </Button>
           </div>
         </Card>
@@ -480,19 +502,19 @@ export default function DashboardPageEnglish() {
         <Card className={`col-span-2 ${CARD} p-4 h-fit`}>
           <div className="space-y-4">
             <div className="flex items-center justify-between">
-              <p className="text-white/70 text-sm">Quick Actions</p>
+              <p className="text-white/70 text-sm">त्वरित क्रियाएँ</p>
               <Button onClick={() => setAddOpen(true)} className="h-8 bg-white/10 hover:bg-white/20 border border-white/20 text-white">
                 <Plus className="h-4 w-4 mr-1.5" />
-                Add Staff
+                कर्मचारी जोड़ें
               </Button>
             </div>
 
             {/* Recent Activity (Top 3) */}
             <div>
               <div className="flex items-center justify-between mb-2.5">
-                <h3 className="text-xl font-semibold text-white">Recent Activity</h3>
+                <h3 className="text-xl font-semibold text-white">हाल की गतिविधि</h3>
                 <Button size="sm" variant="ghost" className="h-8 text-white/80 hover:bg-white/10" onClick={goActivity}>
-                  View more
+                  और देखें
                 </Button>
               </div>
               <div className="space-y-2.5">
@@ -515,14 +537,14 @@ export default function DashboardPageEnglish() {
             {/* AI Suggestions — single most critical + View more */}
             <div>
               <div className="flex items-center justify-between mb-2.5">
-                <h3 className="text-xl font-semibold text-white">AI Suggestions</h3>
+                <h3 className="text-xl font-semibold text-white">AI सुझाव</h3>
                 <Button size="sm" variant="ghost" className="h-8 text-white/80 hover:bg-white/10" onClick={goAISuggestions}>
-                  View more
+                  और देखें
                 </Button>
               </div>
 
               {!currentSuggestion ? (
-                <p className="text-white/70 text-sm">No restock suggestions right now.</p>
+                <p className="text-white/70 text-sm">इस समय कोई रिस्टॉक सुझाव नहीं।</p>
               ) : (
                 <div className="p-3.5 bg-black/40 rounded-xl border border-white/10">
                   <div className="flex items-center justify-between">
@@ -530,7 +552,7 @@ export default function DashboardPageEnglish() {
                     <Badge className="bg-white/10 text-white border-white/20">SKU {currentSuggestion.sku}</Badge>
                   </div>
                   <p className="text-xs text-white/60 mt-0.5">
-                    Stock {currentSuggestion.stock}/{currentSuggestion.reorderLevel} • Supplier: {currentSuggestion.supplier}
+                    स्टॉक {currentSuggestion.stock}/{currentSuggestion.reorderLevel} • आपूर्तिकर्ता: {currentSuggestion.supplier}
                   </p>
                   <div className="mt-2 w-full bg-white/10 rounded-full h-1.5">
                     <div
@@ -551,28 +573,28 @@ export default function DashboardPageEnglish() {
       <Dialog open={addOpen} onOpenChange={setAddOpen}>
         <DialogContent className="bg-black/70 border border-white/10 text-white max-w-lg">
           <DialogHeader>
-            <DialogTitle>Add Staff</DialogTitle>
+            <DialogTitle>कर्मचारी जोड़ें</DialogTitle>
             <DialogDescription className="text-white/60">
-              Add a staff member to {shop.shopName}
+              {shop.shopName} में एक कर्मचारी जोड़ें
             </DialogDescription>
           </DialogHeader>
 
-          <form onSubmit={handleAddStaff} className="space-y-3">
+        <form onSubmit={handleAddStaff} className="space-y-3">
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="text-xs text-white/70">Role</label>
+                <label className="text-xs text-white/70">भूमिका</label>
                 <select
                   value={newStaff.role}
                   onChange={(e) => setNewStaff((s) => ({ ...s, role: e.target.value }))}
                   className="mt-1 h-9 w-full rounded-md bg-black/40 border border-white/20 text-white px-3"
                 >
-                  {["Cashier", "Supervisor", "Stock Associate", "Security", "Sales Associate"].map((r) => (
-                    <option key={r} value={r}>{r}</option>
+                  {ROLE_OPTIONS.map((r) => (
+                    <option key={r.value} value={r.value}>{r.label}</option>
                   ))}
                 </select>
               </div>
               <div>
-                <label className="text-xs text-white/70">Phone</label>
+                <label className="text-xs text-white/70">फ़ोन</label>
                 <Input
                   value={newStaff.phoneNumber || ""}
                   onChange={(e) => setNewStaff((s) => ({ ...s, phoneNumber: e.target.value }))}
@@ -584,19 +606,19 @@ export default function DashboardPageEnglish() {
 
             <div className="grid grid-cols-3 gap-3">
               <div>
-                <label className="text-xs text-white/70">Status</label>
+                <label className="text-xs text-white/70">स्थिति</label>
                 <select
                   value={newStaff.status}
                   onChange={(e) => setNewStaff((s) => ({ ...s, status: e.target.value as Staff["status"] }))}
                   className="mt-1 h-9 w-full rounded-md bg-black/40 border border-white/20 text-white px-3"
                 >
-                  {["active", "inactive", "on_leave"].map((s) => (
-                    <option key={s} value={s}>{s.replace("_", " ")}</option>
+                  {STATUS_OPTIONS.map((s) => (
+                    <option key={s.value} value={s.value}>{s.label}</option>
                   ))}
                 </select>
               </div>
               <div>
-                <label className="text-xs text-white/70">Start</label>
+                <label className="text-xs text-white/70">आरंभ</label>
                 <Input
                   value={newStaff.startTime || ""}
                   onChange={(e) => setNewStaff((s) => ({ ...s, startTime: e.target.value }))}
@@ -605,7 +627,7 @@ export default function DashboardPageEnglish() {
                 />
               </div>
               <div>
-                <label className="text-xs text-white/70">End</label>
+                <label className="text-xs text-white/70">समाप्त</label>
                 <Input
                   value={newStaff.endTime || ""}
                   onChange={(e) => setNewStaff((s) => ({ ...s, endTime: e.target.value }))}
@@ -617,7 +639,7 @@ export default function DashboardPageEnglish() {
 
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="text-xs text-white/70">Salary (₹)</label>
+                <label className="text-xs text-white/70">वेतन (₹)</label>
                 <Input
                   type="number"
                   value={Number(newStaff.salary || 0)}
@@ -626,13 +648,13 @@ export default function DashboardPageEnglish() {
                 />
               </div>
               <div>
-                <label className="text-xs text-white/70">Skills (comma separated)</label>
+                <label className="text-xs text-white/70">कौशल (कॉमा से अलग)</label>
                 <Input
                   value={(newStaff.skillset as string[])?.join(", ") || ""}
                   onChange={(e) =>
                     setNewStaff((s) => ({ ...s, skillset: e.target.value.split(",").map((x) => x.trim()).filter(Boolean) }))
                   }
-                  placeholder="POS, Inventory"
+                  placeholder="POS, इन्वेंट्री"
                   className="mt-1 bg-black/40 border-white/20 text-white placeholder:text-white/40 h-9"
                 />
               </div>
@@ -640,10 +662,10 @@ export default function DashboardPageEnglish() {
 
             <DialogFooter className="gap-2 sm:gap-0">
               <Button type="button" variant="ghost" className="text-white/80 hover:bg-white/10" onClick={() => setAddOpen(false)}>
-                Cancel
+                रद्द करें
               </Button>
               <Button type="submit" className="bg-white/10 hover:bg-white/20 border border-white/20 text-white">
-                Add Staff
+                कर्मचारी जोड़ें
               </Button>
             </DialogFooter>
           </form>
@@ -658,7 +680,7 @@ export default function DashboardPageEnglish() {
               onClick={showLastAI}
               className="px-3 py-1 rounded-full text-xs text-white bg-white/10 border border-white/15 hover:bg-white/20 transition"
             >
-              Show last result
+              पिछला परिणाम दिखाएँ
             </button>
           </div>
         )}
@@ -667,12 +689,12 @@ export default function DashboardPageEnglish() {
           <form onSubmit={askAI} className="flex items-center gap-2">
             <div className="inline-flex items-center gap-1.5 rounded-md px-2 py-1 text-[11px] text-white/70">
               <Sparkles className="h-3.5 w-3.5" />
-              Work-kar Assistant
+              वर्क-कर सहायक
             </div>
             <Input
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
-              placeholder='Ask: "Give todays summary", "Optimal employee for inventory", "Create a schedule"...'
+              placeholder='पूछें: "आज का सारांश दें", "इन्वेंट्री के लिए उपयुक्त कर्मचारी", "एक नया शेड्यूल बनाएं"...'
               className="flex-1 h-8 bg-black/40 border border-white/15 text-white placeholder:text-white/40"
             />
             <Button
@@ -681,11 +703,11 @@ export default function DashboardPageEnglish() {
               className="h-8 bg-white/10 hover:bg-white/20 border border-white/20 text-white disabled:opacity-60"
             >
               <Send className="h-4 w-4 mr-1.5" />
-              {isThinking ? "Asking..." : "Ask"}
+              {isThinking ? "पूछ रहे हैं..." : "पूछें"}
             </Button>
 
             {center === "ai" && (
-              <Button type="button" onClick={collapseAI} title="Hide result" className="h-8 bg-white/5 hover:bg-white/15 text-white border border-white/10">
+              <Button type="button" onClick={collapseAI} title="परिणाम छिपाएँ" className="h-8 bg-white/5 hover:bg-white/15 text-white border border-white/10">
                 <ChevronDown className="h-4 w-4" />
               </Button>
             )}

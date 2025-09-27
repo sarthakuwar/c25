@@ -25,11 +25,15 @@ export default function RootLayout({
     <html lang="en" className={`${spaceGrotesk.variable}`}>
       <body
         className="font-sans antialiased" style={{ fontFamily: "var(--font-space-grotesk)" }}
-      > <div className="fixed inset-0 -z-10 overflow-hidden">
-          <div className="absolute top-[-15rem] right-[-5rem] h-[40rem] w-[40rem] rounded-full bg-orange-500/90 dark:bg-slate-400/30 blur-[8rem] sm:h-[50rem] sm:w-[50rem] sm:right-[5rem]"></div>
-          <div className="absolute top-[-10rem] left-[-15rem] h-[45rem] w-[45rem] rounded-full bg-cyan-700/90 dark:bg-zinc-400/30 blur-[8rem] sm:h-[55rem] sm:w-[55rem] sm:left-[-5rem] lg:left-[0rem]"></div>
-          <div className="absolute bottom-[-20rem] left-1/2 transform -translate-x-1/2 h-[50rem] w-[50rem] rounded-full bg-red-800/50 dark:bg-gray-700/55 blur-[8rem] sm:h-[60rem] sm:w-[60rem]"></div>
-        </div>
+      > <div
+  className="
+    fixed inset-0 -z-10 pointer-events-none
+    bg-[radial-gradient(120rem_90rem_at_40%_40%,rgba(0,0,0,0)_55%,rgba(0,0,0,0.12)_78%,rgba(0,0,0,0.24)_100%),radial-gradient(70rem_70rem_at_72%_58%,rgba(255,210,64,0.85)_0%,rgba(255,150,40,0.55)_38%,rgba(255,92,64,0.30)_60%,transparent_75%),radial-gradient(90rem_90rem_at_12%_70%,rgba(21,199,178,0.40)_0%,rgba(21,199,178,0.22)_40%,transparent_70%),linear-gradient(135deg,#0b1220_0%,#0b1220_35%,#0f172a_100%)]
+    blur-[70px] sm:blur-[90px] saturate-[1.18] brightness-[1.06]
+    scale-105
+  "
+/>
+
         {children}
       </body>
     </html>

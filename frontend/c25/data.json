@@ -1,0 +1,1663 @@
+{
+  "id": "shop-001",
+  "shopName": "Work-kar Demo - Koramangala",
+  "startTime": "09:00",
+  "endTime": "21:00",
+  "staffs": [
+    {
+      "id": "shop-001-staff-001",
+      "phoneNumber": "+919004004128",
+      "role": "Cashier",
+      "status": "inactive",
+      "startTime": "10:00",
+      "endTime": "14:00",
+      "employmentType": "parttime",
+      "skillset": ["Customer Service", "Order Picking", "Baking"],
+      "salary": 32000,
+      "tasksCompleted": 27,
+      "noOfLeaves": 0,
+      "noOfHrsWorked": 63,
+      "day": [
+        {
+          "id": "2025-09-26",
+          "tasks": [
+            {
+              "id": "shop-001-staff-001-2025-09-26-t1",
+              "startTime": "10:40",
+              "endTime": "11:40",
+              "task": "Team huddle",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-001-2025-09-26-t2",
+              "startTime": "12:20",
+              "endTime": "13:20",
+              "task": "Cashiering",
+              "status": "completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-001-2025-09-26-t3",
+              "startTime": "14:00",
+              "endTime": "15:00",
+              "task": "Visual merchandising",
+              "status": "not_completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-001-2025-09-26-t4",
+              "startTime": "15:40",
+              "endTime": "16:40",
+              "task": "Inventory check",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-001-2025-09-26-t5",
+              "startTime": "17:20",
+              "endTime": "18:20",
+              "task": "Cleaning",
+              "status": "completed",
+              "priority": "low"
+            }
+          ]
+        },
+        {
+          "id": "2025-09-27",
+          "tasks": [
+            {
+              "id": "shop-001-staff-001-2025-09-27-t1",
+              "startTime": "10:40",
+              "endTime": "11:40",
+              "task": "Open store",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-001-2025-09-27-t2",
+              "startTime": "12:20",
+              "endTime": "13:20",
+              "task": "Cashiering",
+              "status": "completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-001-2025-09-27-t3",
+              "startTime": "14:00",
+              "endTime": "15:00",
+              "task": "Restock shelves",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-001-2025-09-27-t4",
+              "startTime": "15:40",
+              "endTime": "16:40",
+              "task": "Order processing",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-001-2025-09-27-t5",
+              "startTime": "17:20",
+              "endTime": "18:20",
+              "task": "Cashiering",
+              "status": "completed",
+              "priority": "high"
+            }
+          ]
+        },
+        {
+          "id": "2025-09-28",
+          "tasks": [
+            {
+              "id": "shop-001-staff-001-2025-09-28-t1",
+              "startTime": "10:40",
+              "endTime": "11:40",
+              "task": "Open store",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-001-2025-09-28-t2",
+              "startTime": "12:20",
+              "endTime": "13:20",
+              "task": "Cleaning",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-001-2025-09-28-t3",
+              "startTime": "14:00",
+              "endTime": "15:00",
+              "task": "Cashiering",
+              "status": "completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-001-2025-09-28-t4",
+              "startTime": "15:40",
+              "endTime": "16:40",
+              "task": "Restock shelves",
+              "status": "completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-001-2025-09-28-t5",
+              "startTime": "17:20",
+              "endTime": "18:20",
+              "task": "Cashiering",
+              "status": "not_completed",
+              "priority": "low"
+            }
+          ]
+        },
+        {
+          "id": "2025-09-29",
+          "tasks": [
+            {
+              "id": "shop-001-staff-001-2025-09-29-t1",
+              "startTime": "10:40",
+              "endTime": "11:40",
+              "task": "Team huddle",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-001-2025-09-29-t2",
+              "startTime": "12:20",
+              "endTime": "13:20",
+              "task": "Inventory check",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-001-2025-09-29-t3",
+              "startTime": "14:00",
+              "endTime": "15:00",
+              "task": "Inventory check",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-001-2025-09-29-t4",
+              "startTime": "15:40",
+              "endTime": "16:40",
+              "task": "Delivery receiving",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-001-2025-09-29-t5",
+              "startTime": "17:20",
+              "endTime": "18:20",
+              "task": "Close store",
+              "status": "not_completed",
+              "priority": "high"
+            }
+          ]
+        },
+        {
+          "id": "2025-09-30",
+          "tasks": [
+            {
+              "id": "shop-001-staff-001-2025-09-30-t1",
+              "startTime": "10:40",
+              "endTime": "11:40",
+              "task": "Open store",
+              "status": "completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-001-2025-09-30-t2",
+              "startTime": "12:20",
+              "endTime": "13:20",
+              "task": "Delivery receiving",
+              "status": "not_completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-001-2025-09-30-t3",
+              "startTime": "14:00",
+              "endTime": "15:00",
+              "task": "Restock shelves",
+              "status": "completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-001-2025-09-30-t4",
+              "startTime": "15:40",
+              "endTime": "16:40",
+              "task": "Equipment maintenance",
+              "status": "not_completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-001-2025-09-30-t5",
+              "startTime": "17:20",
+              "endTime": "18:20",
+              "task": "Cashiering",
+              "status": "completed",
+              "priority": "low"
+            }
+          ]
+        },
+        {
+          "id": "2025-10-01",
+          "tasks": [
+            {
+              "id": "shop-001-staff-001-2025-10-01-t1",
+              "startTime": "10:40",
+              "endTime": "11:40",
+              "task": "Inventory check",
+              "status": "not_completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-001-2025-10-01-t2",
+              "startTime": "12:20",
+              "endTime": "13:20",
+              "task": "Delivery receiving",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-001-2025-10-01-t3",
+              "startTime": "14:00",
+              "endTime": "15:00",
+              "task": "Restock shelves",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-001-2025-10-01-t4",
+              "startTime": "15:40",
+              "endTime": "16:40",
+              "task": "Cleaning",
+              "status": "not_completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-001-2025-10-01-t5",
+              "startTime": "17:20",
+              "endTime": "18:20",
+              "task": "Close store",
+              "status": "completed",
+              "priority": "low"
+            }
+          ]
+        },
+        {
+          "id": "2025-10-02",
+          "tasks": [
+            {
+              "id": "shop-001-staff-001-2025-10-02-t1",
+              "startTime": "10:40",
+              "endTime": "11:40",
+              "task": "Inventory check",
+              "status": "completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-001-2025-10-02-t2",
+              "startTime": "12:20",
+              "endTime": "13:20",
+              "task": "Customer support",
+              "status": "completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-001-2025-10-02-t3",
+              "startTime": "14:00",
+              "endTime": "15:00",
+              "task": "Order processing",
+              "status": "not_completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-001-2025-10-02-t4",
+              "startTime": "15:40",
+              "endTime": "16:40",
+              "task": "Cashiering",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-001-2025-10-02-t5",
+              "startTime": "17:20",
+              "endTime": "18:20",
+              "task": "Close store",
+              "status": "completed",
+              "priority": "low"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shop-001-staff-002",
+      "phoneNumber": "+919004004128",
+      "role": "Supervisor",
+      "status": "inactive",
+      "startTime": "12:00",
+      "endTime": "21:00",
+      "employmentType": "fulltime",
+      "skillset": ["Merchandising", "Sales", "Customer Service"],
+      "salary": 22000,
+      "tasksCompleted": 25,
+      "noOfLeaves": 0,
+      "noOfHrsWorked": 63,
+      "day": [
+        {
+          "id": "2025-09-26",
+          "tasks": [
+            {
+              "id": "shop-001-staff-002-2025-09-26-t1",
+              "startTime": "12:40",
+              "endTime": "13:40",
+              "task": "Inventory check",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-002-2025-09-26-t2",
+              "startTime": "14:20",
+              "endTime": "15:20",
+              "task": "Restock shelves",
+              "status": "not_completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-002-2025-09-26-t3",
+              "startTime": "16:00",
+              "endTime": "17:00",
+              "task": "Visual merchandising",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-002-2025-09-26-t4",
+              "startTime": "17:40",
+              "endTime": "18:40",
+              "task": "Equipment maintenance",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-002-2025-09-26-t5",
+              "startTime": "19:20",
+              "endTime": "20:20",
+              "task": "Close store",
+              "status": "completed",
+              "priority": "low"
+            }
+          ]
+        },
+        {
+          "id": "2025-09-27",
+          "tasks": [
+            {
+              "id": "shop-001-staff-002-2025-09-27-t1",
+              "startTime": "12:40",
+              "endTime": "13:40",
+              "task": "Team huddle",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-002-2025-09-27-t2",
+              "startTime": "14:20",
+              "endTime": "15:20",
+              "task": "Cleaning",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-002-2025-09-27-t3",
+              "startTime": "16:00",
+              "endTime": "17:00",
+              "task": "Equipment maintenance",
+              "status": "completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-002-2025-09-27-t4",
+              "startTime": "17:40",
+              "endTime": "18:40",
+              "task": "Cashiering",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-002-2025-09-27-t5",
+              "startTime": "19:20",
+              "endTime": "20:20",
+              "task": "Cashiering",
+              "status": "not_completed",
+              "priority": "low"
+            }
+          ]
+        },
+        {
+          "id": "2025-09-28",
+          "tasks": [
+            {
+              "id": "shop-001-staff-002-2025-09-28-t1",
+              "startTime": "12:40",
+              "endTime": "13:40",
+              "task": "Team huddle",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-002-2025-09-28-t2",
+              "startTime": "14:20",
+              "endTime": "15:20",
+              "task": "Inventory check",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-002-2025-09-28-t3",
+              "startTime": "16:00",
+              "endTime": "17:00",
+              "task": "Restock shelves",
+              "status": "completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-002-2025-09-28-t4",
+              "startTime": "17:40",
+              "endTime": "18:40",
+              "task": "Order processing",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-002-2025-09-28-t5",
+              "startTime": "19:20",
+              "endTime": "20:20",
+              "task": "Close store",
+              "status": "completed",
+              "priority": "low"
+            }
+          ]
+        },
+        {
+          "id": "2025-09-29",
+          "tasks": [
+            {
+              "id": "shop-001-staff-002-2025-09-29-t1",
+              "startTime": "12:40",
+              "endTime": "13:40",
+              "task": "Team huddle",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-002-2025-09-29-t2",
+              "startTime": "14:20",
+              "endTime": "15:20",
+              "task": "Customer support",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-002-2025-09-29-t3",
+              "startTime": "16:00",
+              "endTime": "17:00",
+              "task": "Equipment maintenance",
+              "status": "not_completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-002-2025-09-29-t4",
+              "startTime": "17:40",
+              "endTime": "18:40",
+              "task": "Inventory check",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-002-2025-09-29-t5",
+              "startTime": "19:20",
+              "endTime": "20:20",
+              "task": "Cleaning",
+              "status": "completed",
+              "priority": "high"
+            }
+          ]
+        },
+        {
+          "id": "2025-09-30",
+          "tasks": [
+            {
+              "id": "shop-001-staff-002-2025-09-30-t1",
+              "startTime": "12:40",
+              "endTime": "13:40",
+              "task": "Open store",
+              "status": "not_completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-002-2025-09-30-t2",
+              "startTime": "14:20",
+              "endTime": "15:20",
+              "task": "Visual merchandising",
+              "status": "completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-002-2025-09-30-t3",
+              "startTime": "16:00",
+              "endTime": "17:00",
+              "task": "Customer support",
+              "status": "not_completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-002-2025-09-30-t4",
+              "startTime": "17:40",
+              "endTime": "18:40",
+              "task": "Order processing",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-002-2025-09-30-t5",
+              "startTime": "19:20",
+              "endTime": "20:20",
+              "task": "Close store",
+              "status": "not_completed",
+              "priority": "low"
+            }
+          ]
+        },
+        {
+          "id": "2025-10-01",
+          "tasks": [
+            {
+              "id": "shop-001-staff-002-2025-10-01-t1",
+              "startTime": "12:40",
+              "endTime": "13:40",
+              "task": "Open store",
+              "status": "not_completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-002-2025-10-01-t2",
+              "startTime": "14:20",
+              "endTime": "15:20",
+              "task": "Delivery receiving",
+              "status": "completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-002-2025-10-01-t3",
+              "startTime": "16:00",
+              "endTime": "17:00",
+              "task": "Cashiering",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-002-2025-10-01-t4",
+              "startTime": "17:40",
+              "endTime": "18:40",
+              "task": "Cleaning",
+              "status": "not_completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-002-2025-10-01-t5",
+              "startTime": "19:20",
+              "endTime": "20:20",
+              "task": "Cleaning",
+              "status": "not_completed",
+              "priority": "low"
+            }
+          ]
+        },
+        {
+          "id": "2025-10-02",
+          "tasks": [
+            {
+              "id": "shop-001-staff-002-2025-10-02-t1",
+              "startTime": "12:40",
+              "endTime": "13:40",
+              "task": "Team huddle",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-002-2025-10-02-t2",
+              "startTime": "14:20",
+              "endTime": "15:20",
+              "task": "Cashiering",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-002-2025-10-02-t3",
+              "startTime": "16:00",
+              "endTime": "17:00",
+              "task": "Cleaning",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-002-2025-10-02-t4",
+              "startTime": "17:40",
+              "endTime": "18:40",
+              "task": "Restock shelves",
+              "status": "not_completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-002-2025-10-02-t5",
+              "startTime": "19:20",
+              "endTime": "20:20",
+              "task": "Cashiering",
+              "status": "completed",
+              "priority": "low"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shop-001-staff-003",
+      "phoneNumber": "+919082585864",
+      "role": "Stock Associate",
+      "status": "inactive",
+      "startTime": "07:00",
+      "endTime": "12:00",
+      "employmentType": "parttime",
+      "skillset": ["Baking", "Customer Service", "Order Picking"],
+      "salary": 27500,
+      "tasksCompleted": 23,
+      "noOfLeaves": 0,
+      "noOfHrsWorked": 63,
+      "day": [
+        {
+          "id": "2025-09-26",
+          "tasks": [
+            {
+              "id": "shop-001-staff-003-2025-09-26-t1",
+              "startTime": "07:40",
+              "endTime": "08:40",
+              "task": "Team huddle",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-003-2025-09-26-t2",
+              "startTime": "09:20",
+              "endTime": "10:20",
+              "task": "Restock shelves",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-003-2025-09-26-t3",
+              "startTime": "11:00",
+              "endTime": "12:00",
+              "task": "Restock shelves",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-003-2025-09-26-t4",
+              "startTime": "12:40",
+              "endTime": "13:40",
+              "task": "Restock shelves",
+              "status": "not_completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-003-2025-09-26-t5",
+              "startTime": "14:20",
+              "endTime": "15:20",
+              "task": "Cashiering",
+              "status": "not_completed",
+              "priority": "high"
+            }
+          ]
+        },
+        {
+          "id": "2025-09-27",
+          "tasks": [
+            {
+              "id": "shop-001-staff-003-2025-09-27-t1",
+              "startTime": "07:40",
+              "endTime": "08:40",
+              "task": "Open store",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-003-2025-09-27-t2",
+              "startTime": "09:20",
+              "endTime": "10:20",
+              "task": "Inventory check",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-003-2025-09-27-t3",
+              "startTime": "11:00",
+              "endTime": "12:00",
+              "task": "Cleaning",
+              "status": "not_completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-003-2025-09-27-t4",
+              "startTime": "12:40",
+              "endTime": "13:40",
+              "task": "Equipment maintenance",
+              "status": "completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-003-2025-09-27-t5",
+              "startTime": "14:20",
+              "endTime": "15:20",
+              "task": "Cleaning",
+              "status": "completed",
+              "priority": "low"
+            }
+          ]
+        },
+        {
+          "id": "2025-09-28",
+          "tasks": [
+            {
+              "id": "shop-001-staff-003-2025-09-28-t1",
+              "startTime": "07:40",
+              "endTime": "08:40",
+              "task": "Inventory check",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-003-2025-09-28-t2",
+              "startTime": "09:20",
+              "endTime": "10:20",
+              "task": "Equipment maintenance",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-003-2025-09-28-t3",
+              "startTime": "11:00",
+              "endTime": "12:00",
+              "task": "Cleaning",
+              "status": "not_completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-003-2025-09-28-t4",
+              "startTime": "12:40",
+              "endTime": "13:40",
+              "task": "Cleaning",
+              "status": "completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-003-2025-09-28-t5",
+              "startTime": "14:20",
+              "endTime": "15:20",
+              "task": "Cashiering",
+              "status": "completed",
+              "priority": "high"
+            }
+          ]
+        },
+        {
+          "id": "2025-09-29",
+          "tasks": [
+            {
+              "id": "shop-001-staff-003-2025-09-29-t1",
+              "startTime": "07:40",
+              "endTime": "08:40",
+              "task": "Team huddle",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-003-2025-09-29-t2",
+              "startTime": "09:20",
+              "endTime": "10:20",
+              "task": "Cleaning",
+              "status": "completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-003-2025-09-29-t3",
+              "startTime": "11:00",
+              "endTime": "12:00",
+              "task": "Inventory check",
+              "status": "not_completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-003-2025-09-29-t4",
+              "startTime": "12:40",
+              "endTime": "13:40",
+              "task": "Cashiering",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-003-2025-09-29-t5",
+              "startTime": "14:20",
+              "endTime": "15:20",
+              "task": "Cleaning",
+              "status": "not_completed",
+              "priority": "low"
+            }
+          ]
+        },
+        {
+          "id": "2025-09-30",
+          "tasks": [
+            {
+              "id": "shop-001-staff-003-2025-09-30-t1",
+              "startTime": "07:40",
+              "endTime": "08:40",
+              "task": "Open store",
+              "status": "not_completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-003-2025-09-30-t2",
+              "startTime": "09:20",
+              "endTime": "10:20",
+              "task": "Inventory check",
+              "status": "not_completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-003-2025-09-30-t3",
+              "startTime": "11:00",
+              "endTime": "12:00",
+              "task": "Inventory check",
+              "status": "completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-003-2025-09-30-t4",
+              "startTime": "12:40",
+              "endTime": "13:40",
+              "task": "Order processing",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-003-2025-09-30-t5",
+              "startTime": "14:20",
+              "endTime": "15:20",
+              "task": "Cashiering",
+              "status": "completed",
+              "priority": "low"
+            }
+          ]
+        },
+        {
+          "id": "2025-10-01",
+          "tasks": [
+            {
+              "id": "shop-001-staff-003-2025-10-01-t1",
+              "startTime": "07:40",
+              "endTime": "08:40",
+              "task": "Team huddle",
+              "status": "not_completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-003-2025-10-01-t2",
+              "startTime": "09:20",
+              "endTime": "10:20",
+              "task": "Restock shelves",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-003-2025-10-01-t3",
+              "startTime": "11:00",
+              "endTime": "12:00",
+              "task": "Delivery receiving",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-003-2025-10-01-t4",
+              "startTime": "12:40",
+              "endTime": "13:40",
+              "task": "Inventory check",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-003-2025-10-01-t5",
+              "startTime": "14:20",
+              "endTime": "15:20",
+              "task": "Cashiering",
+              "status": "not_completed",
+              "priority": "low"
+            }
+          ]
+        },
+        {
+          "id": "2025-10-02",
+          "tasks": [
+            {
+              "id": "shop-001-staff-003-2025-10-02-t1",
+              "startTime": "07:40",
+              "endTime": "08:40",
+              "task": "Team huddle",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-003-2025-10-02-t2",
+              "startTime": "09:20",
+              "endTime": "10:20",
+              "task": "Cashiering",
+              "status": "not_completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-003-2025-10-02-t3",
+              "startTime": "11:00",
+              "endTime": "12:00",
+              "task": "Cashiering",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-003-2025-10-02-t4",
+              "startTime": "12:40",
+              "endTime": "13:40",
+              "task": "Cashiering",
+              "status": "not_completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-003-2025-10-02-t5",
+              "startTime": "14:20",
+              "endTime": "15:20",
+              "task": "Cleaning",
+              "status": "completed",
+              "priority": "low"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shop-001-staff-004",
+      "phoneNumber": "+919082585864",
+      "role": "Security",
+      "status": "on_leave",
+      "startTime": "07:00",
+      "endTime": "16:00",
+      "employmentType": "fulltime",
+      "skillset": ["Baking", "Sales", "Order Picking"],
+      "salary": 34000,
+      "tasksCompleted": 28,
+      "noOfLeaves": 0,
+      "noOfHrsWorked": 63,
+      "day": [
+        {
+          "id": "2025-09-26",
+          "tasks": [
+            {
+              "id": "shop-001-staff-004-2025-09-26-t1",
+              "startTime": "07:40",
+              "endTime": "08:40",
+              "task": "Team huddle",
+              "status": "completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-004-2025-09-26-t2",
+              "startTime": "09:20",
+              "endTime": "10:20",
+              "task": "Cashiering",
+              "status": "completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-004-2025-09-26-t3",
+              "startTime": "11:00",
+              "endTime": "12:00",
+              "task": "Visual merchandising",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-004-2025-09-26-t4",
+              "startTime": "12:40",
+              "endTime": "13:40",
+              "task": "Customer support",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-004-2025-09-26-t5",
+              "startTime": "14:20",
+              "endTime": "15:20",
+              "task": "Cashiering",
+              "status": "completed",
+              "priority": "low"
+            }
+          ]
+        },
+        {
+          "id": "2025-09-27",
+          "tasks": [
+            {
+              "id": "shop-001-staff-004-2025-09-27-t1",
+              "startTime": "07:40",
+              "endTime": "08:40",
+              "task": "Team huddle",
+              "status": "not_completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-004-2025-09-27-t2",
+              "startTime": "09:20",
+              "endTime": "10:20",
+              "task": "Cashiering",
+              "status": "not_completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-004-2025-09-27-t3",
+              "startTime": "11:00",
+              "endTime": "12:00",
+              "task": "Visual merchandising",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-004-2025-09-27-t4",
+              "startTime": "12:40",
+              "endTime": "13:40",
+              "task": "Customer support",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-004-2025-09-27-t5",
+              "startTime": "14:20",
+              "endTime": "15:20",
+              "task": "Cashiering",
+              "status": "completed",
+              "priority": "low"
+            }
+          ]
+        },
+        {
+          "id": "2025-09-28",
+          "tasks": [
+            {
+              "id": "shop-001-staff-004-2025-09-28-t1",
+              "startTime": "07:40",
+              "endTime": "08:40",
+              "task": "Inventory check",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-004-2025-09-28-t2",
+              "startTime": "09:20",
+              "endTime": "10:20",
+              "task": "Visual merchandising",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-004-2025-09-28-t3",
+              "startTime": "11:00",
+              "endTime": "12:00",
+              "task": "Restock shelves",
+              "status": "completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-004-2025-09-28-t4",
+              "startTime": "12:40",
+              "endTime": "13:40",
+              "task": "Inventory check",
+              "status": "completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-004-2025-09-28-t5",
+              "startTime": "14:20",
+              "endTime": "15:20",
+              "task": "Close store",
+              "status": "completed",
+              "priority": "low"
+            }
+          ]
+        },
+        {
+          "id": "2025-09-29",
+          "tasks": [
+            {
+              "id": "shop-001-staff-004-2025-09-29-t1",
+              "startTime": "07:40",
+              "endTime": "08:40",
+              "task": "Inventory check",
+              "status": "completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-004-2025-09-29-t2",
+              "startTime": "09:20",
+              "endTime": "10:20",
+              "task": "Customer support",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-004-2025-09-29-t3",
+              "startTime": "11:00",
+              "endTime": "12:00",
+              "task": "Delivery receiving",
+              "status": "not_completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-004-2025-09-29-t4",
+              "startTime": "12:40",
+              "endTime": "13:40",
+              "task": "Delivery receiving",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-004-2025-09-29-t5",
+              "startTime": "14:20",
+              "endTime": "15:20",
+              "task": "Close store",
+              "status": "completed",
+              "priority": "low"
+            }
+          ]
+        },
+        {
+          "id": "2025-09-30",
+          "tasks": [
+            {
+              "id": "shop-001-staff-004-2025-09-30-t1",
+              "startTime": "07:40",
+              "endTime": "08:40",
+              "task": "Team huddle",
+              "status": "completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-004-2025-09-30-t2",
+              "startTime": "09:20",
+              "endTime": "10:20",
+              "task": "Delivery receiving",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-004-2025-09-30-t3",
+              "startTime": "11:00",
+              "endTime": "12:00",
+              "task": "Customer support",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-004-2025-09-30-t4",
+              "startTime": "12:40",
+              "endTime": "13:40",
+              "task": "Inventory check",
+              "status": "completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-004-2025-09-30-t5",
+              "startTime": "14:20",
+              "endTime": "15:20",
+              "task": "Cashiering",
+              "status": "completed",
+              "priority": "low"
+            }
+          ]
+        },
+        {
+          "id": "2025-10-01",
+          "tasks": [
+            {
+              "id": "shop-001-staff-004-2025-10-01-t1",
+              "startTime": "07:40",
+              "endTime": "08:40",
+              "task": "Open store",
+              "status": "completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-004-2025-10-01-t2",
+              "startTime": "09:20",
+              "endTime": "10:20",
+              "task": "Cashiering",
+              "status": "not_completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-004-2025-10-01-t3",
+              "startTime": "11:00",
+              "endTime": "12:00",
+              "task": "Restock shelves",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-004-2025-10-01-t4",
+              "startTime": "12:40",
+              "endTime": "13:40",
+              "task": "Inventory check",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-004-2025-10-01-t5",
+              "startTime": "14:20",
+              "endTime": "15:20",
+              "task": "Cashiering",
+              "status": "completed",
+              "priority": "low"
+            }
+          ]
+        },
+        {
+          "id": "2025-10-02",
+          "tasks": [
+            {
+              "id": "shop-001-staff-004-2025-10-02-t1",
+              "startTime": "07:40",
+              "endTime": "08:40",
+              "task": "Inventory check",
+              "status": "completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-004-2025-10-02-t2",
+              "startTime": "09:20",
+              "endTime": "10:20",
+              "task": "Restock shelves",
+              "status": "not_completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-004-2025-10-02-t3",
+              "startTime": "11:00",
+              "endTime": "12:00",
+              "task": "Customer support",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-004-2025-10-02-t4",
+              "startTime": "12:40",
+              "endTime": "13:40",
+              "task": "Order processing",
+              "status": "not_completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-004-2025-10-02-t5",
+              "startTime": "14:20",
+              "endTime": "15:20",
+              "task": "Cleaning",
+              "status": "not_completed",
+              "priority": "high"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "shop-001-staff-005",
+      "phoneNumber": "+919082585864",
+      "role": "Sales Associate",
+      "status": "inactive",
+      "startTime": "08:00",
+      "endTime": "16:00",
+      "employmentType": "fulltime",
+      "skillset": ["Cooking", "Sales", "Inventory"],
+      "salary": 22000,
+      "tasksCompleted": 22,
+      "noOfLeaves": 0,
+      "noOfHrsWorked": 63,
+      "day": [
+        {
+          "id": "2025-09-26",
+          "tasks": [
+            {
+              "id": "shop-001-staff-005-2025-09-26-t1",
+              "startTime": "08:30",
+              "endTime": "09:30",
+              "task": "Team huddle",
+              "status": "not_completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-005-2025-09-26-t2",
+              "startTime": "10:00",
+              "endTime": "11:00",
+              "task": "Customer support",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-005-2025-09-26-t3",
+              "startTime": "11:30",
+              "endTime": "12:30",
+              "task": "Inventory check",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-005-2025-09-26-t4",
+              "startTime": "13:00",
+              "endTime": "14:00",
+              "task": "Order processing",
+              "status": "not_completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-005-2025-09-26-t5",
+              "startTime": "14:30",
+              "endTime": "15:30",
+              "task": "Close store",
+              "status": "completed",
+              "priority": "low"
+            }
+          ]
+        },
+        {
+          "id": "2025-09-27",
+          "tasks": [
+            {
+              "id": "shop-001-staff-005-2025-09-27-t1",
+              "startTime": "08:30",
+              "endTime": "09:30",
+              "task": "Team huddle",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-005-2025-09-27-t2",
+              "startTime": "10:00",
+              "endTime": "11:00",
+              "task": "Restock shelves",
+              "status": "not_completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-005-2025-09-27-t3",
+              "startTime": "11:30",
+              "endTime": "12:30",
+              "task": "Inventory check",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-005-2025-09-27-t4",
+              "startTime": "13:00",
+              "endTime": "14:00",
+              "task": "Visual merchandising",
+              "status": "not_completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-005-2025-09-27-t5",
+              "startTime": "14:30",
+              "endTime": "15:30",
+              "task": "Close store",
+              "status": "completed",
+              "priority": "high"
+            }
+          ]
+        },
+        {
+          "id": "2025-09-28",
+          "tasks": [
+            {
+              "id": "shop-001-staff-005-2025-09-28-t1",
+              "startTime": "08:30",
+              "endTime": "09:30",
+              "task": "Open store",
+              "status": "not_completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-005-2025-09-28-t2",
+              "startTime": "10:00",
+              "endTime": "11:00",
+              "task": "Cashiering",
+              "status": "completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-005-2025-09-28-t3",
+              "startTime": "11:30",
+              "endTime": "12:30",
+              "task": "Equipment maintenance",
+              "status": "completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-005-2025-09-28-t4",
+              "startTime": "13:00",
+              "endTime": "14:00",
+              "task": "Delivery receiving",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-005-2025-09-28-t5",
+              "startTime": "14:30",
+              "endTime": "15:30",
+              "task": "Cleaning",
+              "status": "completed",
+              "priority": "low"
+            }
+          ]
+        },
+        {
+          "id": "2025-09-29",
+          "tasks": [
+            {
+              "id": "shop-001-staff-005-2025-09-29-t1",
+              "startTime": "08:30",
+              "endTime": "09:30",
+              "task": "Inventory check",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-005-2025-09-29-t2",
+              "startTime": "10:00",
+              "endTime": "11:00",
+              "task": "Customer support",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-005-2025-09-29-t3",
+              "startTime": "11:30",
+              "endTime": "12:30",
+              "task": "Order processing",
+              "status": "completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-005-2025-09-29-t4",
+              "startTime": "13:00",
+              "endTime": "14:00",
+              "task": "Customer support",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-005-2025-09-29-t5",
+              "startTime": "14:30",
+              "endTime": "15:30",
+              "task": "Cleaning",
+              "status": "not_completed",
+              "priority": "low"
+            }
+          ]
+        },
+        {
+          "id": "2025-09-30",
+          "tasks": [
+            {
+              "id": "shop-001-staff-005-2025-09-30-t1",
+              "startTime": "08:30",
+              "endTime": "09:30",
+              "task": "Inventory check",
+              "status": "not_completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-005-2025-09-30-t2",
+              "startTime": "10:00",
+              "endTime": "11:00",
+              "task": "Delivery receiving",
+              "status": "completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-005-2025-09-30-t3",
+              "startTime": "11:30",
+              "endTime": "12:30",
+              "task": "Order processing",
+              "status": "not_completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-005-2025-09-30-t4",
+              "startTime": "13:00",
+              "endTime": "14:00",
+              "task": "Cashiering",
+              "status": "not_completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-005-2025-09-30-t5",
+              "startTime": "14:30",
+              "endTime": "15:30",
+              "task": "Cleaning",
+              "status": "completed",
+              "priority": "high"
+            }
+          ]
+        },
+        {
+          "id": "2025-10-01",
+          "tasks": [
+            {
+              "id": "shop-001-staff-005-2025-10-01-t1",
+              "startTime": "08:30",
+              "endTime": "09:30",
+              "task": "Inventory check",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-005-2025-10-01-t2",
+              "startTime": "10:00",
+              "endTime": "11:00",
+              "task": "Customer support",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-005-2025-10-01-t3",
+              "startTime": "11:30",
+              "endTime": "12:30",
+              "task": "Cashiering",
+              "status": "not_completed",
+              "priority": "high"
+            },
+            {
+              "id": "shop-001-staff-005-2025-10-01-t4",
+              "startTime": "13:00",
+              "endTime": "14:00",
+              "task": "Cashiering",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-005-2025-10-01-t5",
+              "startTime": "14:30",
+              "endTime": "15:30",
+              "task": "Cashiering",
+              "status": "not_completed",
+              "priority": "high"
+            }
+          ]
+        },
+        {
+          "id": "2025-10-02",
+          "tasks": [
+            {
+              "id": "shop-001-staff-005-2025-10-02-t1",
+              "startTime": "08:30",
+              "endTime": "09:30",
+              "task": "Team huddle",
+              "status": "not_completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-005-2025-10-02-t2",
+              "startTime": "10:00",
+              "endTime": "11:00",
+              "task": "Order processing",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-005-2025-10-02-t3",
+              "startTime": "11:30",
+              "endTime": "12:30",
+              "task": "Customer support",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-005-2025-10-02-t4",
+              "startTime": "13:00",
+              "endTime": "14:00",
+              "task": "Equipment maintenance",
+              "status": "completed",
+              "priority": "low"
+            },
+            {
+              "id": "shop-001-staff-005-2025-10-02-t5",
+              "startTime": "14:30",
+              "endTime": "15:30",
+              "task": "Cleaning",
+              "status": "not_completed",
+              "priority": "high"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

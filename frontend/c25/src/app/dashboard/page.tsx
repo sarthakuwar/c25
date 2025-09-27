@@ -97,7 +97,7 @@ const seedShop: Shop = {
   startTime: "09:00",
   endTime: "21:00",
   staffs: [
-    { id: "shop-001-staff-001", phoneNumber: "+91 97468 782554", role: "Cashier", status: "active", startTime: "09:00", endTime: "17:00", skillset: ["Merchandising", "Baking", "Inventory"], tasksCompleted: 27, salary: 32000, day: [], name: "Cashier" },
+    { id: "shop-001-staff-001", phoneNumber: "+91 74985 23422", role: "Cashier", status: "active", startTime: "09:00", endTime: "17:00", skillset: ["Merchandising", "Baking", "Inventory"], tasksCompleted: 27, salary: 32000, day: [], name: "Cashier" },
     { id: "shop-001-staff-002", phoneNumber: "+91 97101 202163", role: "Supervisor", status: "inactive", startTime: "12:00", endTime: "20:00", skillset: ["Inventory", "Electronics", "POS", "Merchandising"], tasksCompleted: 25, salary: 22000, day: [], name: "Supervisor" },
     { id: "shop-001-staff-003", phoneNumber: "+91 99137 708064", role: "Stock Associate", status: "on_leave", startTime: "13:00", endTime: "22:00", skillset: ["Merchandising", "Inventory", "Cooking"], tasksCompleted: 23, salary: 27500, day: [], name: "Stock Associate" },
     { id: "shop-001-staff-004", phoneNumber: "+91 96878 815887", role: "Security", status: "on_leave", startTime: "09:00", endTime: "18:00", skillset: ["Customer Service", "Inventory", "Returns Handling"], tasksCompleted: 28, salary: 34000, day: [], name: "Security" },
@@ -209,7 +209,6 @@ export default function DashboardPage() {
     { key: "reports" as const, icon: FileText, label: "Reports", onClick: goReports },
     { key: "inventory" as const, icon: Boxes, label: "Inventory", onClick: goInventory },
     { key: "financials" as const, icon: Banknote, label: "Financials", onClick: goFinancials },
-    { key: "data" as const, icon: Database, label: "Data Import", onClick: goData },
   ]), [goShops, goAnalytics, goReports, goInventory, goFinancials, goData])
 
   /* -------------------- AI dock + caching -------------------- */

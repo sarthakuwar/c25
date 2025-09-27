@@ -254,8 +254,10 @@ app.post("/ai", async (c) => {
 
                     3) Give Todays Task Summary and other details
                     Output: Return list of tasks that are completed/uncompleted in todays date
-                    Output: Task[] with a summary key containing summary of the task
-                  
+                    Format: Task[] with a summary key containing summary of the task
+
+                    4) Give the staff summary
+                    Output: Return The Staff[] with a field containing the full summary in text format
                     
                   For above tasks return JSON strictly directly not any kind of text content, formatted JSON must be the output!`,
     })
